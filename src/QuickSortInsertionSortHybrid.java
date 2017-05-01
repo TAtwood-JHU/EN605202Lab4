@@ -75,6 +75,16 @@ public class QuickSortInsertionSortHybrid
         }
     }
 
+    /**
+    * Calculates current partition position.
+    * @author					Tom Atwood
+    * @version					1.0.0.0
+    * @since					1.0.0.0
+    * @param intArray			Array being sorted.
+    * @param left				Current left position of subarray.
+    * @param right				Current right position of subarray.
+    * @return					Returns partition position.
+    */
     private int partition(int[] intArray, int left, int right)
     {
         int pivot = intArray[right];
@@ -93,6 +103,14 @@ public class QuickSortInsertionSortHybrid
         return (i + 1);
     }
 
+    /**
+     * Prints the array contents to a text file.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param filepath			The filepath for the output text file.
+     * @param intArray			The array to be printed.
+     */
     public void printArrayToFile(String filepath, int[] intArray)
     {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();

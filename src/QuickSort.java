@@ -6,26 +6,43 @@
  * @version						1.0.0.0
  * @since						1.0.0.0
  */
- public class QuickSort
+public class QuickSort
 {
+	/**
+	 * Sorts intArray[left to right] using iterative QuickSort with default stopping case of 2.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+	 * @param intArray			Array being sorted.
+	 */
     public void iterativeQuickSort(int[] intArray)
     {
-        iterativeQuickSort(intArray, 0);
+        iterativeQuickSort(intArray, 2);
     }
 
-    // Sorts intArray[left to right] using iterative QuickSort
+    /**
+     * Sorts intArray[left to right] using iterative QuickSort.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param intArray			Array being sorted.
+     * @param stoppingCase		Stopping case (partition size).
+     */
     public void iterativeQuickSort(int[] intArray, int stoppingCase)
     {
         int left = 0;
         int right = intArray.length - 1;
 
+        // Using a stack to emulate recursion in this iterative method
         Stack stack = new Stack(intArray.length);
 
+        // Push the end values onto the stack
         stack.push(left);
         stack.push(right);
 
         while (!stack.isEmpty())
         {
+        	// Pop the left and right values of the subarray off the stack.
             right = stack.pop();
             left = stack.pop();
 
@@ -39,12 +56,16 @@
             {
                 int p = partition(intArray, left, right);
 
+                // If partition location is greater than left position for subarray
+                // Put left value onto stack as well as rightmost value from left partition.
                 if (p - 1 > left)
                 {
                     stack.push(left);
                     stack.push(p - 1);
                 }
 
+                // If partition location is less than right position for subarray
+                // Put right value onto stack as well as leftmost value from right partition.
                 if (p + 1 < right)
                 {
                     stack.push(p + 1);
@@ -54,6 +75,16 @@
         }
     }
 
+    /**
+    * Calculates current partition position.
+    * @author					Tom Atwood
+    * @version					1.0.0.0
+    * @since					1.0.0.0
+    * @param intArray			Array being sorted.
+    * @param left				Current left position of subarray.
+    * @param right				Current right position of subarray.
+    * @return					Returns partition position.
+    */
     private int partition(int[] intArray, int left, int right)
     {
         int pivot = intArray[right];
@@ -72,6 +103,14 @@
         return (i + 1);
     }
 
+    /**
+     * Prints the array contents to a text file.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param filepath			The filepath for the output text file.
+     * @param intArray			The array to be printed.
+     */
     public void printArrayToFile(String filepath, int[] intArray)
     {
         ArrayList<Integer> arrayList = new ArrayList<Integer>();
