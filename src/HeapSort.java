@@ -1,0 +1,78 @@
+/**
+ * HeapSort class
+ * @author						Tom Atwood
+ * 								EN605.202.81 Data Structures, Spring 2017, Lab #4
+ * 								May 2, 2017
+ * @version						1.0.0.0
+ * @since						1.0.0.0
+ */
+public class HeapSort
+{
+	// Empty constructor
+	public HeapSort() {
+    }
+
+	// Methods
+	
+    /**
+    * Iterative heap sort.
+    * @author					Tom Atwood
+    * @version					1.0.0.0
+    * @since					1.0.0.0
+    * @param intArray			Array to be sorted.
+    * @param ascending @true	Value should be @true if the array should be sorted in ascending order or @false if in descending order.
+    */
+    public void iterativeHeapSort(int[] intArray, boolean ascending) {
+        for (int i = intArray.length / 2 - 1; i >= 0; i--) {
+            repairTop(intArray, intArray.length - 1, i, ascending ? -1 : 1);
+        }
+        for (int i = intArray.length - 1; i > 0; i--) {
+            swap(intArray, 0, i);
+            repairTop(intArray, i - 1, 0, ascending ? -1 : 1);
+        }
+    }
+
+    /**
+     * Move the top of the heap to the correct place.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param intArray			Array to be sorted.
+     * @param bottom			Last index that can be touched.
+     * @param topIndex			Index of the top of the heap.
+     * @param ascendingOrder	1 = ascending order; -1 descending order
+     */
+    private void repairTop(int[] intArray, int bottom, int topIndex, int ascendingOrder) {
+        int temp = intArray[topIndex];
+        int successor = topIndex * 2 + 1;
+        
+        if ((successor < bottom) && (Integer.compare(intArray[successor],intArray[successor + 1]))==ascendingOrder) {
+            successor++;
+        }
+
+        while ((successor <= bottom) && (Integer.compare(temp, intArray[successor]))==ascendingOrder) {
+            intArray[topIndex] = intArray[successor];
+            topIndex = successor;
+            successor = successor * 2 + 1;
+            if ((successor < bottom) && (Integer.compare(intArray[successor], intArray[successor + 1])) == ascendingOrder) {
+                successor++;
+            }
+        }
+        intArray[topIndex] = temp;
+    }
+
+    /**
+     * Swaps two elements of the heap.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param intArray			Array where elements will be swapped.
+     * @param left				Index of the first element.
+     * @param right				Index of the second element.
+     */
+    private void swap(int[] intArray, int left, int right) {
+        int tmp = intArray[right];
+        intArray[right] = intArray[left];
+        intArray[left] = tmp;
+    }
+ }
