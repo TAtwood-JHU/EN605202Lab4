@@ -31,7 +31,7 @@ public class EN605202Lab4 {
 
 		// If no command-line parameters provided, provide quick guidance to help screen. 
 		if (args.length==0) {
-			validationFailureScreen("EN605202Lab4.java requires three command-line parameters.  Please type 'EN605202Lab4 /?' for more help.");
+			validationInformationScreen("EN605202Lab4.java requires three command-line parameters.  Please type 'EN605202Lab4 /?' for more help.");
 			return;
 		}
 		
@@ -46,7 +46,7 @@ public class EN605202Lab4 {
 				return;
 			}
 			else {
-				validationFailureScreen("Invalid first parameter.  Please type 'EN605202Lab4 /?' for more help.");
+				validationInformationScreen("Invalid first parameter.  Please type 'EN605202Lab4 /?' for more help.");
 				return;
 			}
 		}
@@ -64,7 +64,7 @@ public class EN605202Lab4 {
 			}
 			else
 			{
-				validationFailureScreen("Invalid sort type provided in the first parameter.  Please type 'EN605202Lab4 /?' for more help.");
+				validationInformationScreen("Invalid sort type provided in the first parameter.  Please type 'EN605202Lab4 /?' for more help.");
 				return;
 			}
 			
@@ -73,12 +73,12 @@ public class EN605202Lab4 {
 			inputFile = args[1];
 			
 			if(args[1]==null) {
-				validationFailureScreen("Input file path is required in parameter 1.");
+				validationInformationScreen("Input file path is required in parameter 1.");
 				return;
 			}
 	
 			if(fileExists(inputFile)==false) {
-				validationFailureScreen("Input file filepath is invalid.");
+				validationInformationScreen("Input file filepath is invalid.");
 				return;
 			}
 	
@@ -87,12 +87,12 @@ public class EN605202Lab4 {
 			outputFile = args[2];
 			
 			if(args[2]==null) {
-				validationFailureScreen("Output file path is required in parameter 2.");
+				validationInformationScreen("Output file path is required in parameter 2.");
 				return;
 			}
 			
 			if(!fileExists(outputFile)==false) {
-				validationFailureScreen("Output file filepath is invalid.");
+				validationInformationScreen("Output file filepath is invalid.");
 				return;
 			}
 			
@@ -140,9 +140,11 @@ public class EN605202Lab4 {
 				}
 				default: {}
 			}
+			
+			validationInformationScreen("Sorting process was successful.");
 		}
 		else {
-			validationFailureScreen("EN605202Lab4.java requires three command-line parameters.  Please type 'EN605202Lab4 /?' for more help.");
+			validationInformationScreen("EN605202Lab4.java requires three command-line parameters.  Please type 'EN605202Lab4 /?' for more help.");
 		}
 	}	
 	
@@ -153,7 +155,7 @@ public class EN605202Lab4 {
 	 * @since							1.0.0.0
 	 */	
 	private static void clearScreen() {
-		//System.out.print("\033[2J\033[1;1H");
+		System.out.print("\033[2J\033[1;1H");
 	}
 
 	/**
@@ -225,7 +227,7 @@ public class EN605202Lab4 {
 	 * @since				1.0.0.0
 	 * @param message		Message to be displayed.
 	 */
-	 private static void validationFailureScreen(String message) {
+	 private static void validationInformationScreen(String message) {
 		clearScreen();
 		writeLine("EN605.202.81 Data Structures, Spring 2017, Lab #4 - Informational Message");
 		writeLine("");
