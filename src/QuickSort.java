@@ -13,34 +13,21 @@ public class QuickSort
 	long endTime = -1;			// End time for timing.
 	long elapsed = -1;			// Sort algorithm elapsed time (in nanoseconds).
 	
-	/**
-	 * Sorts intArray[left to right] using iterative QuickSort with default stopping case of 2.
-     * @author					Tom Atwood
-     * @version					1.0.0.0
-     * @since					1.0.0.0
-	 * @param intArray			Array being sorted.
-	 */
-    public void iterativeQuickSort(int[] intArray)
-    {
-        iterativeQuickSort(intArray, 2);
-    }
-
     /**
      * Sorts intArray[left to right] using iterative QuickSort.
      * @author					Tom Atwood
      * @version					1.0.0.0
      * @since					1.0.0.0
      * @param intArray			Array being sorted.
-     * @param stoppingCase		Stopping case (partition size).
      */
-    public void iterativeQuickSort(int[] intArray, int stoppingCase)
+    public void iterativeQuickSort(int[] intArray)
     {
     	startTime = System.nanoTime();
     	
         int left = 0;
         int right = intArray.length - 1;
 
-        // Using a stack to emulate recursion in this iterative method
+        // Mimic recursion through use of a stack
         Stack stack = new Stack(intArray.length);
 
         // Push the end values onto the stack
@@ -53,31 +40,22 @@ public class QuickSort
             right = stack.pop();
             left = stack.pop();
 
-            int n = right - left;
+            int p = partition(intArray, left, right);
 
-            if (n <= stoppingCase)
+            // If partition location is greater than left position for subarray
+            // Put left value onto stack as well as rightmost value from left partition.
+            if (p - 1 > left)
             {
-
+                stack.push(left);
+                stack.push(p - 1);
             }
-            else
+
+            // If partition location is less than right position for subarray
+            // Put right value onto stack as well as leftmost value from right partition.
+            if (p + 1 < right)
             {
-                int p = partition(intArray, left, right);
-
-                // If partition location is greater than left position for subarray
-                // Put left value onto stack as well as rightmost value from left partition.
-                if (p - 1 > left)
-                {
-                    stack.push(left);
-                    stack.push(p - 1);
-                }
-
-                // If partition location is less than right position for subarray
-                // Put right value onto stack as well as leftmost value from right partition.
-                if (p + 1 < right)
-                {
-                    stack.push(p + 1);
-                    stack.push(right);
-                }
+                stack.push(p + 1);
+                stack.push(right);
             }
         }
         

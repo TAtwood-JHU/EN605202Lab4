@@ -116,7 +116,7 @@ public class EN605202Lab4 {
 				}
 				case "quicksort": {
 					QuickSort quickSort = new QuickSort();
-					quickSort.iterativeQuickSort(intArray, 2);
+					quickSort.iterativeQuickSort(intArray);
 					quickSort.printArrayToFile(outputFile, intArray);
 					break;
 				}
@@ -134,7 +134,7 @@ public class EN605202Lab4 {
 				}
 				case "quicksortmedianofthree": {
 					QuickSortMedianOfThree quickSortMedianOfThree = new QuickSortMedianOfThree();
-					quickSortMedianOfThree.iterativeQuickSort(intArray, 2);
+					quickSortMedianOfThree.iterativeQuickSort(intArray);
 					quickSortMedianOfThree.printArrayToFile(outputFile, intArray);
 					break;
 				}
@@ -153,7 +153,7 @@ public class EN605202Lab4 {
 	 * @since							1.0.0.0
 	 */	
 	private static void clearScreen() {
-		System.out.print("\033[2J\033[1;1H");
+		//System.out.print("\033[2J\033[1;1H");
 	}
 
 	/**

@@ -84,7 +84,7 @@ public class HeapSort
             intArray[topIndex] = intArray[successor];
             topIndex = successor;
             successor = successor * 2 + 1;
-            if ((successor < bottom) && (Integer.compare(intArray[successor], intArray[successor + 1])) == ascendingOrder) {
+            if ((successor < bottom) && (Integer.compare(intArray[successor], intArray[successor + 1]))==ascendingOrder) {
                 successor++;
             }
         }
@@ -97,12 +97,12 @@ public class HeapSort
      * @version					1.0.0.0
      * @since					1.0.0.0
      * @param intArray			Array where elements will be swapped.
-     * @param left				Index of the first element.
-     * @param right				Index of the second element.
+     * @param index1			Index of the first element.
+     * @param index2			Index of the second element.
      */
-    private void swap(int[] intArray, int left, int right) {
-        int tmp = intArray[right];
-        intArray[right] = intArray[left];
-        intArray[left] = tmp;
+    private void swap(int[] intArray, int index1, int index2) {
+        int temp = intArray[index1];
+        intArray[index1] = intArray[index2];
+        intArray[index2] = temp;
     }
  }

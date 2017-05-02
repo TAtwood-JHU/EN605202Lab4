@@ -40,6 +40,7 @@ public class QuickSortInsertionSortHybrid
         int left = 0;
         int right = intArray.length - 1;
 
+        // Mimic recursion through use of a stack
         Stack stack = new Stack(intArray.length);
 
         stack.push(left);
