@@ -126,7 +126,7 @@ public class EN605202Lab4 {
 	 * @since							1.0.0.0
 	 */
 	private static void clearScreen() {
-		System.out.print("\033[2J\033[1;1H");
+		//System.out.print("\033[2J\033[1;1H");
 	}
 
 	/**
