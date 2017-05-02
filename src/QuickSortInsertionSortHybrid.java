@@ -8,14 +8,35 @@
  */
 public class QuickSortInsertionSortHybrid
 {
+	// Initialize class variables.
+	long startTime = -1;		// Start time for timing.
+	long endTime = -1;			// End time for timing.
+	long elapsed = -1;			// Sort algorithm elapsed time (in nanoseconds).
+
+    /**
+     * An iterative version of the quick sort algorithm with default cutoff set at 0.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param intArray			Array to be sorted.
+     */
     public void iterativeQuickSort(int[] intArray)
     {
         iterativeQuickSort(intArray, 0);
     }
 
-    // Sorts intArray[left to right] using iterative QuickSort
+    /**
+     * An iterative version of the quick sort algorithm.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param intArray			Array to be sorted.
+     * @param kCutoff			Partition cutoff to switch over to insertion sort.
+     */
     public void iterativeQuickSort(int[] intArray, int kCutoff)
     {
+    	startTime = System.nanoTime();
+    	
         int left = 0;
         int right = intArray.length - 1;
 
@@ -52,8 +73,18 @@ public class QuickSortInsertionSortHybrid
                 }
             }
         }
+        
+        endTime = System.nanoTime();
+        elapsed = endTime - startTime;
     }
 
+    /**
+     * An iterative version of the insertion sort algorithm.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param intArray			Array to be sorted.
+     */
     private void iterativeInsertionSort(int[] intArray)
     {
         int n = intArray.length;
@@ -113,14 +144,7 @@ public class QuickSortInsertionSortHybrid
      */
     public void printArrayToFile(String filepath, int[] intArray)
     {
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
-
-        for (int i = 0; i < intArray.length; i++)
-        {
-            arrayList.add(intArray[i]);
-        }
-
-        FileManager.WriteFileLines(filepath, arrayList);
+        FileManager.WriteFileLines(filepath, intArray, elapsed);
     }
 
     /**
@@ -129,8 +153,8 @@ public class QuickSortInsertionSortHybrid
      * @version					1.0.0.0
      * @since					1.0.0.0
      * @param intArray			Array where elements will be swapped.
-     * @param left				Index of the first element.
-     * @param right				Index of the second element.
+     * @param index1			Index of the first element.
+     * @param index2			Index of the second element.
      */
     private void swap(int[] intArray, int index1, int index2)
     {

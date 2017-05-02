@@ -71,7 +71,7 @@ public class ArrayList<T>
      * @since					1.0.0.0
      * @param index				Index value.
      * @param value				Value to update.
-     * @throws Exception
+     * @throws Exception		Throws an exception if the index provided is not within the current size of the array list.
      */
     public void update(int index, T value) throws Exception {
         if (index < 0 || index > this.size()) {
@@ -141,8 +141,8 @@ public class ArrayList<T>
      * @author 					Tom Atwood
      * @version					1.0.0.0
      * @since					1.0.0.0
+     * @throws Exception		Throws an exception if the index provided is not within the current size of the array list.
      * @param index				Index value.
-     * @throws Exception
      */
     @SuppressWarnings("unchecked")
 	public void remove(int index) throws Exception {
@@ -219,7 +219,7 @@ public class ArrayList<T>
         * @since					1.0.0.0
         * @param index				Item to be sought at specific position in the list.
         * @return					If found, returns a copy of the item.  Otherwise, the return value is null.
-        * @throws Exception 
+        * @throws Exception		Throws an exception if the index provided is not within the current size of the array list.
         */
     public T get(int index) throws Exception  {
         T result = null;

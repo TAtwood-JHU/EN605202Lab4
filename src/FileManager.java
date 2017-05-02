@@ -61,9 +61,10 @@ public class FileManager {
 	 * @version				1.0.0.0
 	 * @since				1.0.0.0
 	 * @param filepath		The file to be written.
-	 * @param fileData		Lines of data to be written.
+	 * @param intArray		Lines of data to be written.
+	 * @param elapsed		The amount of time it took to sort intArray.  This is written at the top of the file.
 	 */
-	public static void WriteFileLines(String filepath, ArrayList<Integer> fileData) {
+	public static void WriteFileLines(String filepath, int[] intArray, long elapsed) {
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(filepath);
@@ -75,9 +76,17 @@ public class FileManager {
 		
 		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 		
-		for(int i=0; i<fileData.size(); i++) {
+		try {
+			bufferedWriter.write("Processing time for the sort to be run: " + Long.toString(elapsed) + " ns");
+			bufferedWriter.newLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0; i<intArray.length; i++) {
 			try {
-				bufferedWriter.write(fileData.get(i).toString());
+				bufferedWriter.write(Integer.toString(intArray[i]));
 				bufferedWriter.newLine();
 			}
 			catch (Exception e) {

@@ -8,6 +8,11 @@
  */
 public class HeapSort
 {
+	// Initialize class variables.
+	long startTime = -1;		// Start time for timing.
+	long endTime = -1;			// End time for timing.
+	long elapsed = -1;			// Sort algorithm elapsed time (in nanoseconds).
+
 	// Empty constructor
 	public HeapSort() {
     }
@@ -20,16 +25,35 @@ public class HeapSort
     * @version					1.0.0.0
     * @since					1.0.0.0
     * @param intArray			Array to be sorted.
-    * @param ascending @true	Value should be @true if the array should be sorted in ascending order or @false if in descending order.
+    * @param ascending 			Value should be @true if the array should be sorted in ascending order or @false if in descending order.
     */
     public void iterativeHeapSort(int[] intArray, boolean ascending) {
-        for (int i = intArray.length / 2 - 1; i >= 0; i--) {
+
+    	startTime = System.nanoTime();
+    	
+    	for (int i = intArray.length / 2 - 1; i >= 0; i--) {
             repairTop(intArray, intArray.length - 1, i, ascending ? -1 : 1);
         }
         for (int i = intArray.length - 1; i > 0; i--) {
             swap(intArray, 0, i);
             repairTop(intArray, i - 1, 0, ascending ? -1 : 1);
         }
+        
+        endTime =  System.nanoTime();
+        elapsed = endTime-startTime;
+    }
+    
+    /**
+     * Prints the array contents to a text file.
+     * @author					Tom Atwood
+     * @version					1.0.0.0
+     * @since					1.0.0.0
+     * @param filepath			The filepath for the output text file.
+     * @param intArray			The array to be printed.
+     */
+    public void printArrayToFile(String filepath, int[] intArray)
+    {
+        FileManager.WriteFileLines(filepath, intArray, elapsed);
     }
 
     /**

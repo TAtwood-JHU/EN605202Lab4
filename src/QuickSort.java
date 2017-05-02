@@ -8,6 +8,11 @@
  */
 public class QuickSort
 {
+	// Initialize class variables.
+	long startTime = -1;		// Start time for timing.
+	long endTime = -1;			// End time for timing.
+	long elapsed = -1;			// Sort algorithm elapsed time (in nanoseconds).
+	
 	/**
 	 * Sorts intArray[left to right] using iterative QuickSort with default stopping case of 2.
      * @author					Tom Atwood
@@ -30,6 +35,8 @@ public class QuickSort
      */
     public void iterativeQuickSort(int[] intArray, int stoppingCase)
     {
+    	startTime = System.nanoTime();
+    	
         int left = 0;
         int right = intArray.length - 1;
 
@@ -73,6 +80,9 @@ public class QuickSort
                 }
             }
         }
+        
+        endTime = System.nanoTime();
+        elapsed = endTime-startTime;
     }
 
     /**
@@ -113,14 +123,7 @@ public class QuickSort
      */
     public void printArrayToFile(String filepath, int[] intArray)
     {
-        ArrayList<Integer> arrayList = new ArrayList<Integer>();
-
-        for (int i = 0; i < intArray.length; i++)
-        {
-            arrayList.add(intArray[i]);
-        }
-
-        FileManager.WriteFileLines(filepath, arrayList);
+        FileManager.WriteFileLines(filepath, intArray, elapsed);
     }
 
     /**
@@ -129,8 +132,8 @@ public class QuickSort
      * @version					1.0.0.0
      * @since					1.0.0.0
      * @param intArray			Array where elements will be swapped.
-     * @param left				Index of the first element.
-     * @param right				Index of the second element.
+     * @param index1			Index of the first element.
+     * @param index2			Index of the second element.
      */
     private void swap(int[] intArray, int index1, int index2)
     {
