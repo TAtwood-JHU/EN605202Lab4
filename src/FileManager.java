@@ -26,26 +26,20 @@ public class FileManager {
 	 * @param filepath		File path of file to be read.
 	 * @return				An array list of all lines in the file.
 	 */
-	public static ArrayList<Integer> GetFileLines(String filepath) {
-		ArrayList<Integer> fileData = new ArrayList<Integer>();
-		String line = "";
+	public static ArrayList<String> GetFileLines(String filepath) {
+		ArrayList<String> fileData = new ArrayList<String>();
+		String line = null;
 		FileReader fileReader = null;
 		
 		try {
 			fileReader = new FileReader(filepath);
-		}
-		catch(Exception e) {
-			System.out.println("Error reading file: " + filepath);
-			e.printStackTrace();
-		}
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
 		
-		BufferedReader bufferedReader = new BufferedReader(fileReader);
-		
-		try {
 			while((line = bufferedReader.readLine()) != null) {
-				int intLine = Integer.parseInt(line);
-				fileData.add(intLine);
+				fileData.add(line);
 			}
+
+			fileReader.close();
 		}
 		catch (IOException e) {
 			System.out.println("Buffered reader cannot access file reader.");
@@ -64,7 +58,7 @@ public class FileManager {
 	 * @param intArray		Lines of data to be written.
 	 * @param elapsed		The amount of time it took to sort intArray.  This is written at the top of the file.
 	 */
-	public static void WriteFileLines(String filepath, int[] intArray, long elapsed) {
+	public static void WriteFileLines(String filepath, ArrayList<String> fileData, long elapsed) {
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(filepath);
@@ -77,16 +71,24 @@ public class FileManager {
 		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 		
 		try {
+			bufferedWriter.write("EN605.202.81 Data Structures, Spring 2017, Lab #4");
+			bufferedWriter.newLine();
+			bufferedWriter.write("Submitted by Tom Atwood, May 2, 2017");
+			bufferedWriter.newLine();
+			bufferedWriter.newLine();
 			bufferedWriter.write("Processing time for the sort to be run: " + Long.toString(elapsed) + " ns");
+			bufferedWriter.newLine();
+			bufferedWriter.newLine();
+			bufferedWriter.write("Results:");
 			bufferedWriter.newLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		for(int i=0; i<intArray.length; i++) {
+		for(int i=0; i<fileData.size(); i++) {
 			try {
-				bufferedWriter.write(Integer.toString(intArray[i]));
+				bufferedWriter.write(fileData.get(i));
 				bufferedWriter.newLine();
 			}
 			catch (Exception e) {

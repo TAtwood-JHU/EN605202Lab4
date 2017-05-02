@@ -53,7 +53,13 @@ public class HeapSort
      */
     public void printArrayToFile(String filepath, int[] intArray)
     {
-        FileManager.WriteFileLines(filepath, intArray, elapsed);
+    	ArrayList<String> intArrayString = new ArrayList<String>();
+    	
+    	for(int i=0;i<intArray.length;i++) {
+    		intArrayString.add(Integer.toString(intArray[i]));
+    	}
+    	
+        FileManager.WriteFileLines(filepath, intArrayString, elapsed);
     }
 
     /**
