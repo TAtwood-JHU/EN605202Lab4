@@ -55,7 +55,7 @@ public class FileManager {
 	 * @version				1.0.0.0
 	 * @since				1.0.0.0
 	 * @param filepath		The file to be written.
-	 * @param intArray		Lines of data to be written.
+	 * @param fileData		The data to be written to the file.
 	 * @param elapsed		The amount of time it took to sort intArray.  This is written at the top of the file.
 	 */
 	public static void WriteFileLines(String filepath, ArrayList<String> fileData, long elapsed) {

@@ -19,10 +19,9 @@ public class EN605202Lab4 {
 	 * @version							1.0.0.0
 	 * @since							1.0.0.0
 	 * @param args						Command-line arguments provided by user.
-	 * @throws Exception 
-	 * @throws NumberFormatException 
+	 * @throws Exception 				Throws an exception if arraylist attempts to get element index outside the bounds of the collection. 
 	 */
-	public static void main(String[] args) throws NumberFormatException, Exception {
+	public static void main(String[] args) throws Exception {
 		// Initialize method variables
 		// These are the variables we're looking to populate and verify the values
 		String sortType = "";

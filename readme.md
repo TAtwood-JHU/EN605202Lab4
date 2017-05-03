@@ -66,6 +66,14 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 git tag
 ```
 
+## IDEs and Tools Used
+
+As mentioned previously, Java 8v131 was used to compile and run this program from the command-line.
+
+IDEs
+- For C# prototype in the *csharp% directory, Visual Studio 2017 is required with .NET Framework 4.6.2.
+- For the Java project, Eclipse Neon.3 IDE was used.
+
 ## Authors
 
 * **Tom Atwood** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
